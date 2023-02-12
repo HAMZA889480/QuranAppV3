@@ -1,6 +1,7 @@
 package com.example.quranappv3;
 
 import android.content.Context;
+import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -22,6 +23,8 @@ public class ArrayJSONQuranHelper {
             arr = new JSONArray(getJsonFromAssets());
         } catch (JSONException e) {
             e.printStackTrace();
+            Log.d("except", "getJsonFromAssets: " + e.getMessage());
+
         }
     }
 
@@ -30,10 +33,12 @@ public class ArrayJSONQuranHelper {
         for (int i = from; i <= to; i++)
         {
             try {
-                a.add(new Ayat(arr.getJSONObject(i).getString("text"),
-                        arr.getJSONObject(i).getString("UrduTranslation")));
+                String s = arr.getJSONObject(i).getString("UrduTranslation");
+                a.add(new Ayat(arr.getJSONObject(i).getString("text"), s));
             } catch (JSONException e) {
                 e.printStackTrace();
+                Log.d("except", "getJsonFromAssets: " + e.getMessage());
+
             }
         }
         return a;
@@ -50,6 +55,8 @@ public class ArrayJSONQuranHelper {
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
+                Log.d("except", "getJsonFromAssets: " + e.getMessage());
+
             }
         }
         return -1;
@@ -66,6 +73,7 @@ public class ArrayJSONQuranHelper {
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
+                Log.d("except", "getJsonFromAssets: " + e.getMessage());
             }
         }
         return -1;
@@ -82,6 +90,7 @@ public class ArrayJSONQuranHelper {
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
+                Log.d("except", "getJsonFromAssets: " + e.getMessage());
             }
         }
         return -1;
@@ -98,6 +107,7 @@ public class ArrayJSONQuranHelper {
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
+                Log.d("except", "getJsonFromAssets: " + e.getMessage());
             }
         }
         return -1;
@@ -112,6 +122,8 @@ public class ArrayJSONQuranHelper {
                         arr.getJSONObject(i).getString("UrduTranslation")));
             } catch (JSONException e) {
                 e.printStackTrace();
+                Log.d("except", "getJsonFromAssets: " + e.getMessage());
+
             }
         }
         return a;
@@ -135,6 +147,7 @@ public class ArrayJSONQuranHelper {
             jsonString = new String(buffer, "UTF-8");
         } catch (IOException e) {
             e.printStackTrace();
+            Log.d("except", "getJsonFromAssets: " + e.getMessage());
             return null;
         }
         return jsonString;
